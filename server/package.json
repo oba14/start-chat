@@ -4,7 +4,7 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/oba14/oa-chat-app"
+    "url": "https://github.com/oba14/start-chat"
   },
   "scripts": {
     "lint": "eslint .",
@@ -14,7 +14,7 @@
   "author": "OA",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/oba14/oa-chat-app"
+    "url": "https://github.com/oba14/start-chat"
   },
   "homepage": "",
   "dependencies": {
