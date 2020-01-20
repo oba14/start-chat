@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, { useEffect } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import { Paper } from '@material-ui/core'
 import { Typography } from '@material-ui/core'
@@ -54,7 +54,6 @@ const Chat = () => {
     
     const  user  = useSelector(state=> state.user.user.username)
     const messages  = useSelector(state=> state.messages.messages)
-    
     const socket  = useSelector(state=> state.socket.socket)
     
     // Socket listeners
@@ -63,6 +62,7 @@ const Chat = () => {
         return () => {
         if (socket) dispatch(clearChatListeners(socket));
         };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [socket]);
 
     useEffect(() => {
@@ -72,8 +72,8 @@ const Chat = () => {
         }
     }, [messages]);
     
-
     if (!user) return <Redirect to='/' />;
+    
     return (
         <div>
             <Paper className= {classes.root}>
@@ -82,15 +82,17 @@ const Chat = () => {
                 </Typography >
 
                 <div className= {classes.flex}>
+                    
                     <Users classes={classes} />
-                     <ChatWindow classes={classes} 
+                    
+                    <ChatWindow classes={classes} 
                                 messages={messages}
                                 user={user} />
                 </div>
 
                 <ChatBox classes={classes} 
-                        user={ user } 
-                        socket={socket}/> 
+                         user={ user } 
+                         socket={socket}/> 
             </Paper>
         </div>
     )

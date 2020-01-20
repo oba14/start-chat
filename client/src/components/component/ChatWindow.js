@@ -13,22 +13,20 @@ const ChatWindow = ({classes, messages, user}) => {
         
         <div className= {`${classes.chatWindow} chat-window`}>   
             {messages.map((msg, index) => (
-                <div key={index} className={`${msg.left ? 'left' : ''} ${msg.joined ? 'joined' : ''}`}>
-                    <div className={`msg ${user === msg.user ? 'user' : 'ext'}`}>
-                        <div className={classes.flex} key={index}>
+                <div key={index}>
+                        <div className={`${classes.flex} ${user === msg.user ? 'user' : 'ext'}`} key={index}>
                             <Chip
                                 label={msg.user}
-                                className={`${classes.chip} ${user === msg.user ? '' : 'user'}`}
+                                className={classes.chip}
                                 />
                             <Typography 
                                 variant='body1' 
                                 gutterBottom
                                 > { msg.text } </Typography>
                         </div>
-                        <div className='time'>
-                        <   Moment fromNow>{msg.time}</Moment>
+                        <div className='time' style={{fontSize:'60%'}}>
+                            <Moment fromNow>{msg.time}</Moment>
                         </div>
-                    </div>
                 </div>
             ))}
         </div>   

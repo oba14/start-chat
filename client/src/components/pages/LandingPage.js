@@ -28,16 +28,16 @@ const useStyles = makeStyles (theme => ({
 
 const LandingPage = (props) => {
 
-    const ENTER_KEY = 13;
     const classes = useStyles();
     const dispatch = useDispatch();
-    // local stat
+    
     const [textValue, setTextValue] = useState('');
     
     // state hook
     const  user  = useSelector(state=> state.user.user)
     const socket = useSelector(state => state.socket.socket)
     
+    const ENTER_KEY = 13;
 
     useEffect(() => {
         
@@ -47,7 +47,8 @@ const LandingPage = (props) => {
           if (socket)dispatch(clearLandingListeners(socket))
           
         };
-      }, [socket, setLandingListeners, clearLandingListeners]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+      }, [socket]);
 
     useEffect(() => {
         // If logged in and user navigates to Login page, should redirect them to dashboard
@@ -56,6 +57,7 @@ const LandingPage = (props) => {
           props.history.push("/chat");
           toast.success(`${user.username} is signed in!`)
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [user])
 
 
@@ -68,12 +70,12 @@ const LandingPage = (props) => {
         
         if (socket) {
             if (textValue.length > 0) {
-            if (socket.connected) {
-                 dispatch(joinChat(socket, textValue, props.history))
-                 //setTextValue('')
-            } else {
-                toast.warn('Server unavailable');
-            }
+                if (socket.connected) {
+                    dispatch(joinChat(socket, textValue, props.history))
+                    //setTextValue('')
+                } else {
+                    toast.warn('Server unavailable');
+                }
             }
         }
     };

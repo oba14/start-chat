@@ -34,7 +34,7 @@
   
   // Disconnect
   export const disconnect = socket => dispatch => {
-    socket.emit('bye-im-leaving');
+    socket.emit('sign-out');
   
     dispatch({
       type: 'DISCONNECT'

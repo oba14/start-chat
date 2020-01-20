@@ -18,7 +18,9 @@ const Users = ({classes}) => {
                     users.map((user, index) => (
                         <ListItem  
                         key={index} button>
-                        <ListItemText primary= {user.username} />
+                        <ListItemText 
+                          style={{color: 'green'}}
+                          primary= {user.username} />
                         </ListItem>    
                     ))    
                 }

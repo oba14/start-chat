@@ -1,5 +1,3 @@
-
-
 // Set users
 export const setUsers = users => dispatch => {
   dispatch({

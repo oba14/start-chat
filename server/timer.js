@@ -1,13 +1,5 @@
 const timers = [];
 
-const removeTimer = socket => {
-  const clock = timers.find(t => t.user === socket.user.username);
-  if (clock) {
-    const timerIndex = timers.findIndex(t => t === clock);
-    timers.splice(timerIndex, 1);
-    clearTimeout(clock.timer);
-  }
-};
 const setTimer = (socket, timeout) => {
   const timer = setTimeout(() => {
     socket.emit('away', 'You have been disconnected due to inactivity');
@@ -17,6 +9,15 @@ const setTimer = (socket, timeout) => {
   }, timeout);
 
   timers.push({ user: socket.user.username, timer });
+};
+
+const removeTimer = socket => {
+  const clock = timers.find(t => t.user === socket.user.username);
+  if (clock) {
+    const timerIndex = timers.findIndex(t => t === clock);
+    timers.splice(timerIndex, 1);
+    clearTimeout(clock.timer);
+  }
 };
 
 const clearTimer = (socket, timeout) => {

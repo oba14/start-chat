@@ -4,13 +4,14 @@ var io = require('socket.io')(http);
 const logger = require('./logger');
 const { setTimer, clearTimer, removeTimer } = require('./timer');
 
+// TEST THE SERVER
 app.get('/', function(req, res){
   res.send('<h1>Server for Chat App</h1>');
 });
 
 const timeout = 120000; // logout user after given time
 
-
+// START A NEW CONNECTION
 io.on('connection', (socket) => {
 
   logger.info(`New connection: ${socket.id}`);
@@ -21,15 +22,15 @@ io.on('connection', (socket) => {
     if (users.find(e => e.username === user.username)) {
       socket.emit(
         'username-taken',
-      `Unfortunately username ${user.username} is already taken`
+      `Username ${user.username} is already taken`
       );
       logger.error(
-        `${socket.id} tried to join chat chat with taken username - ${user.username}`
+        `${socket.id} Username already taken - ${user.username}`
       );
     } else if (/^\w+$/i.test(user.username)) {
       socket.user = user;
       socket.emit('join-chat-success', user);
-      socket.broadcast.emit('hello-there', user);
+      socket.broadcast.emit('logged-in', user);
       logger.info(
         `${socket.id} joined chat with username - ${user.username}`
       );
@@ -38,7 +39,7 @@ io.on('connection', (socket) => {
       logger.error(`${socket.id} tried to join chat with invalid username`);
       socket.emit(
         'validation-error',
-        'Username must contain only letters and numbers'
+        'Username Invalid (only numbers and lettes allowed)'
       );
     }
   });
@@ -62,7 +63,7 @@ io.on('connection', (socket) => {
   });
 
   // LEAVE CHAT SESSION
-  socket.on('bye-im-leaving', () => {
+  socket.on('sign-out', () => {
     socket.broadcast.emit('bye', socket.user);
     removeTimer(socket);
     logger.info(
@@ -88,6 +89,7 @@ process.on('SIGTERM', () => {
   process.exit(0);
 });
 
-http.listen(3001, function(){
+// Server listening on given port
+http.listen(3001, () => {
   console.log('listening on *:3001');
 });

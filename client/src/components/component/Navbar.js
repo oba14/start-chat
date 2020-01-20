@@ -17,16 +17,17 @@ const Navbar = () => {
         socket.on('connected-users', users => {
           dispatch(setUsers(users));
         });
-        socket.on('hello-there', user => {
+        socket.on('logged-in', user => {
           dispatch(newUserJoined(user));
           socket.emit('all-users');
         });
       }
       return () => {
         socket && socket.off('connected-users');
-        socket && socket.off('hello-there');
+        socket && socket.off('logged-in');
       };
-    }, [socket, setUsers, user, newUserJoined]);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [socket, user]);
 
     return (
       <div >

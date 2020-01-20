@@ -17,6 +17,7 @@ const Navigation = () => {
 
     useEffect(() => {
       dispatch(setSocket())
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
   
     useEffect(() => {
@@ -24,6 +25,7 @@ const Navigation = () => {
         socket.on('disconnect', () => {
           dispatch(serverDown(socket))
         });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [socket]);
   
 
@@ -32,6 +34,7 @@ const Navigation = () => {
         socket.on('connect', () => {
           dispatch(socketConnected())
         });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [socket]);
 
     return (
