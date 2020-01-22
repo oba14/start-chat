@@ -4,13 +4,15 @@ import socket from './socket';
 import messages from './messages';
 import user from './user';
 import users from './users';
+import auth from './authReducer';
 
 const rootReducer = combineReducers({
   errors: errorReducer,
   socket,
   messages,
   user,
-  users
+  users,
+  auth
 });
 
 export default rootReducer

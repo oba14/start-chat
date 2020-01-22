@@ -6,6 +6,8 @@ import LandingPage from '../pages/LandingPage';
 import Navbar from './Navbar'
 import Chat from '../pages/Chat';
 import NotFound from '../pages/NotFound';
+import Login from '../auth/Login';
+import Register from '../auth/Register';
 import { ToastContainer} from 'react-toastify';
 
 import { setSocket, serverDown, socketConnected } from '../../actions/sockets';
@@ -51,7 +53,9 @@ const Navigation = () => {
             draggable
             pauseOnHover />
         <Switch>
-          <Route exact path='/' component={LandingPage} />
+          <Route exact path='/' component={Login}></Route>
+          <Route exact path='/register' component={Register}></Route>
+          <Route exact path='/landing' component={LandingPage} />
           <Route exact path='/chat' component={Chat} />
           <Route component={NotFound} />
         </Switch>

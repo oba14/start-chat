@@ -47,7 +47,7 @@ const useStyles = makeStyles (theme => ({
     }
 }))
 
-const Chat = () => {
+const Chat = (props) => {
     
     const classes = useStyles();
     const dispatch = useDispatch();
@@ -72,7 +72,10 @@ const Chat = () => {
         }
     }, [messages]);
     
-    if (!user) return <Redirect to='/' />;
+if (!user) {
+    // return <Redirect to='/' />
+    props.history.push("/")
+};
     
     return (
         <div>
