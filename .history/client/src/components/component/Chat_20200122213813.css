@@ -1,6 +1,6 @@
 .user {
     background-color: #528085;
     width: fit-content;
-    border-right: 5%;
+    margin: 3px;
     border-radius: 3px;
 }

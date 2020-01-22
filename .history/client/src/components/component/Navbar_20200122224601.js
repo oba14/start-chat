@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { setUsers, newUserJoined } from '../../actions/users';
 import { disconnect } from '../../actions/user';
-import { logoutUser } from '../../actions/authActions'
+import {logoutUser} from '../../actions/authActions'
 
 const Navbar = () => {
   
@@ -41,11 +41,11 @@ const Navbar = () => {
               Home
             </NavLink>
             { auth.isAuthenticated && (
-            
+            <div className='col s5 center black-text'>
               <button type="button" className='btn btn-danger' onClick={() => dispatch(logoutUser())}>
                 Logout
               </button>
-            
+            </div>
             )}
             {user.username && 
             <NavLink exact activeClassName="active"

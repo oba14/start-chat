@@ -4,13 +4,12 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { setUsers, newUserJoined } from '../../actions/users';
 import { disconnect } from '../../actions/user';
-import { logoutUser } from '../../actions/authActions'
+import {logoutUser} from '../../actions/authActions'
 
 const Navbar = () => {
   
     const  user  = useSelector(state=> state.user.user)
     const socket = useSelector(state => state.socket.socket)
-    const auth = useSelector(state => state.auth)
 
     const dispatch = useDispatch();
 
@@ -40,13 +39,12 @@ const Navbar = () => {
               className=" col s5 black-text">
               Home
             </NavLink>
-            { auth.isAuthenticated && (
-            
+
+            <div className='col s5 center black-text'>
               <button type="button" className='btn btn-danger' onClick={() => dispatch(logoutUser())}>
                 Logout
               </button>
-            
-            )}
+            </div>
             {user.username && 
             <NavLink exact activeClassName="active"
               to="/chat"
