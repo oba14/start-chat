@@ -36,7 +36,8 @@ const LandingPage = (props) => {
     // state hook
     const  user  = useSelector(state=> state.user.user)
     const socket = useSelector(state => state.socket.socket)
-    
+    const auth = useSelector(state => state.auth)
+
     const ENTER_KEY = 13;
 
     useEffect(() => {
@@ -78,6 +79,11 @@ const LandingPage = (props) => {
                 }
             }
         }
+    };
+
+    if (!auth.isAuthenticated) {
+        // return <Redirect to='/' />
+        props.history.push("/")
     };
     return (
         

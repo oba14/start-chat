@@ -53,7 +53,7 @@ const Login = (props) => {
             </Link>
             <div  style={{ paddingLeft: "11.250px" }}>
               <h4>
-                <b>Admin Login</b>
+                <b>Login to Start Chatting</b>
               </h4>
               <p>
                 Don't have an account? <Link to="/register">Register</Link>

@@ -10,6 +10,7 @@ var io = require('socket.io')(http);
 const logger = require('./logger');
 const { setTimer, clearTimer, removeTimer } = require('./timer');
 const uri = process.env.ATLAS_URI;
+const port = process.env.PORT || 3001;
 const loginRoutes = require('./routes/users');
 
 app.use(cors());
@@ -134,6 +135,6 @@ process.on('SIGTERM', () => {
 });
 
 // Server listening on given port
-http.listen(3001, () => {
+http.listen(port, () => {
   console.log('listening on *:3001');
 });
