@@ -3,9 +3,6 @@
 <h1 align="center">
 Chat app build using socket.io and react with redux.
   </h1>
-<p> 
-A chat app to display how we can store forms data (input fields, multiple attachments) to mongodb using multer and gridfs. GridFS is a specification for storing and retrieving files that exceed the BSON-document size limit of 16 MB and multer is a node.js middleware for handling multipart/form-data, which is primarily used for uploading files. For frontend we are using react and for state management redux is used. Forms are created using react hook form and uploaded to mongodb atlas through an express server. Users can create, update and delete form data. 
-</p>
 
 <h3> Features summary of APP</h3>
 <ul>
