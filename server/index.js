@@ -11,6 +11,7 @@ const logger = require('./logger');
 const { setTimer, clearTimer, removeTimer } = require('./timer');
 const uri = process.env.ATLAS_URI;
 const port = process.env.PORT || 3001;
+
 const loginRoutes = require('./routes/users');
 
 app.use(cors());
@@ -30,9 +31,6 @@ require("./config/passport")(passport);
 
 
 /************** mongodb ************************* */
-
-
-
 mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true, useFindAndModify: false})
 .then(() => {console.log('Database is connected') },
 err => { console.log('Can not connect to the database '+ err)}
@@ -51,7 +49,6 @@ app.get('/', function(req, res){
 
 /**************** ROUTES ********/
 app.use('/chatapp', loginRoutes); //LOGIN ROUTES
-
 
 
 const timeout = 120000; // logout user after given time
@@ -136,5 +133,5 @@ process.on('SIGTERM', () => {
 
 // Server listening on given port
 http.listen(port, () => {
-  console.log('listening on *:3001');
+  console.log('listening on port:', port);
 });
